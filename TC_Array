@@ -1,0 +1,161 @@
+package TestCasesTestNG;
+
+import org.testng.Assert;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
+
+import BaseClassTestNG.BaseClassTestNG;
+import PageObjectTestNG.Array;
+import PageObjectTestNG.DataStructure;
+import PageObjectTestNG.GetStartedButton;
+import PageObjectTestNG.HomePage;
+import PageObjectTestNG.LoginPage;
+import PageObjectTestNG.Tree;
+import UtilitiesTestNG.Loggerclass;
+
+public class TC_Array extends BaseClassTestNG{
+	
+	GetStartedButton gsb;
+	HomePage hp;
+	LoginPage lp;
+	Tree tp;
+	DataStructure ds;
+	Array ar;
+	String RegUserName = "khush2023";
+	String RegPaswrd = "Hello@123";
+	
+	@BeforeClass
+	 public void ObjDeclare() throws InterruptedException
+	 {
+		 gsb = new GetStartedButton(driver);
+		 hp = new HomePage(driver);
+		 lp = new LoginPage(driver);
+		 tp = new Tree(driver);	
+		 ds = new DataStructure(driver);
+		 ar = new Array(driver);
+	 }
+	
+	public void User_Login() {
+		hp.DsGetStarted();
+		hp.CLickSignin();	 
+	 	lp.typeUserName(RegUserName);
+		lp.typePassword(RegPaswrd);
+		lp.clickLogin();
+		Assert.assertTrue(true);
+		Loggerclass.info("User logged in successfully");
+	}
+	
+	@Test(priority=1, description="Array Page")
+	 public void ClickArray() throws Exception {
+		User_Login();
+		ar.ClickAR();
+
+		String actH = ar.getheading();
+		String expH = "Array";
+		if (actH.equals(expH)) {
+			Assert.assertEquals (actH,expH);
+			Loggerclass.info("You are on the Array page");
+			Assert.assertTrue(true);
+		}
+		else {
+			Loggerclass.info("You are not on the Array page");
+			Assert.assertTrue(false);
+		}
+	}
+	
+	@Test(priority=2, description="Arrays in Python")
+	 public void ClickArrayInPython() throws Exception {
+		ar.APClick();
+		String actPara = ar.getparagraphText();
+		String expPara = "Arrays in Python";
+		if (actPara.equals(expPara)) {
+			Assert.assertEquals (actPara,expPara);
+			Loggerclass.info("You are on Arrays in Python page");
+			Assert.assertTrue(true);
+		}
+		else {
+			Loggerclass.info("You are not on Arrays in Python page");
+			Assert.assertTrue(false);
+		}
+		ar.AREDClick();
+		ar.TEditor();
+		Loggerclass.info("Arrays in Python page verified successfully");
+		driver.navigate().back();
+		driver.navigate().back();
+	}
+	
+	@Test(priority=3, description="Arrays Using List")
+	 public void ClickArrayUsingList() throws Exception {
+		ar.ALClick();
+		String actPara = ar.getparagraphText();
+		String expPara = "Arrays Using List";
+		if (actPara.equals(expPara)) {
+			Assert.assertEquals (actPara,expPara);
+			Loggerclass.info("You are on Arrays Using List page");
+			Assert.assertTrue(true);
+		}
+		else {
+			Loggerclass.info("You are not on Arrays Using List page");
+			Assert.assertTrue(false);
+		}
+		ar.AREDClick();
+		ar.TEditor();
+		Loggerclass.info("Arrays Using List page verified successfully");
+		driver.navigate().back();
+		driver.navigate().back();
+	}
+	
+	@Test(priority=4, description="Basic Operations in Lists")
+	 public void ClickBasicOpLists() throws Exception {
+		ar.ABOLClick();
+		String actPara = ar.getparagraphText();
+		String expPara = "Basic Operations in Lists";
+		if (actPara.equals(expPara)) {
+			Assert.assertEquals (actPara,expPara);
+			Loggerclass.info("You are on Basic Operations in Lists page");
+			Assert.assertTrue(true);
+		}
+		else {
+			Loggerclass.info("You are not on Basic Operations in Lists page");
+			Assert.assertTrue(false);
+		}
+		ar.AREDClick();
+		ar.TEditor();
+		Loggerclass.info("Basic Operations in Lists page verified successfully");
+		driver.navigate().back();
+		driver.navigate().back();
+	}
+	
+	@Test(priority=5, description="Applications of Array")
+	 public void ClickApplicationsOfArray() throws Exception {
+		ar.APAClick();
+		String actPara = ar.getparagraphText();
+		String expPara = "Applications of Array";
+		if (actPara.equals(expPara)) {
+			Assert.assertEquals (actPara,expPara);
+			Loggerclass.info("You are on Applications of Array page");
+			Assert.assertTrue(true);
+		}
+		else {
+			Loggerclass.info("You are not on Applications of Array page");
+			Assert.assertTrue(false);
+		}
+		ar.AREDClick();
+		ar.TEditor();
+		Loggerclass.info("Applications of Array page verified successfully");
+		driver.navigate().back();
+	}
+	
+	@Test(priority=6, description="Practice Question 1")
+	 public void ClickPracticeQuestions() throws Exception {
+		ar.PRACClick();
+		Loggerclass.info("You are on Practice Question Page");
+		ar.Q1Click();
+		Thread.sleep(2000);
+		///////////////////////////
+		//Need to write code for Practice Questions
+		////////////////////////
+
+	}
+
+}
