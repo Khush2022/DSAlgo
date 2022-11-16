@@ -1,0 +1,116 @@
+package TestCasesTestNG;
+
+import org.testng.Assert;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
+
+import BaseClassTestNG.BaseClassTestNG;
+import PageObjectTestNG.Array;
+import PageObjectTestNG.DataStructure;
+import PageObjectTestNG.GetStartedButton;
+import PageObjectTestNG.Graph;
+import PageObjectTestNG.HomePage;
+import PageObjectTestNG.LinkedList;
+import PageObjectTestNG.LoginPage;
+import PageObjectTestNG.Stack;
+import PageObjectTestNG.Tree;
+import UtilitiesTestNG.Loggerclass;
+
+public class TC_Graph extends BaseClassTestNG {
+	
+	GetStartedButton gsb;
+	HomePage hp;
+	LoginPage lp;
+	Tree tp;
+	DataStructure ds;
+	Array ar;
+	LinkedList ll;
+	Stack st;
+	Graph gr;
+	String RegUserName = "khush2023";
+	String RegPaswrd = "Hello@123";
+	
+	@BeforeClass
+	 public void ObjDeclare() throws InterruptedException
+	 {
+		 gsb = new GetStartedButton(driver);
+		 hp = new HomePage(driver);
+		 lp = new LoginPage(driver);
+		 tp = new Tree(driver);	
+		 ds = new DataStructure(driver);
+		 ar = new Array(driver);
+		 ll = new LinkedList(driver);
+		 st = new Stack(driver);
+		 gr = new Graph(driver);
+	 }
+	
+	public void User_Login() {
+		hp.DsGetStarted();
+		hp.CLickSignin();	 
+	 	lp.typeUserName(RegUserName);
+		lp.typePassword(RegPaswrd);
+		lp.clickLogin();
+		Assert.assertTrue(true);
+		Loggerclass.info("User logged in successfully");
+	}
+	
+	@Test(priority=1, description="Graph Page")
+	 public void ClickGraphPage() throws Exception {
+		User_Login();
+		gr.ClickGR();
+		String actH = gr.getheading();
+		String expH = "Graph";
+		if (actH.equals(expH)) {
+			Assert.assertEquals (actH,expH);
+			Loggerclass.info("You are on the Graph page");
+			Assert.assertTrue(true);
+		}
+		else {
+			Loggerclass.info("You are not on the Graph page");
+			Assert.assertTrue(false);
+		}
+	}
+	
+	@Test(priority=2, description="Graph")
+	 public void ClickGraph() throws Exception {
+		gr.GRAPHClick();
+		String actPara = gr.getparagraphText();
+		String expPara = "Graph";
+		if (actPara.equals(expPara)) {
+			Assert.assertEquals (actPara,expPara);
+			Loggerclass.info("You are on Graph page");
+			Assert.assertTrue(true);
+		}
+		else {
+			Loggerclass.info("You are not on Graph page");
+			Assert.assertTrue(false);
+		}
+		gr.GREDClick();
+		gr.TEditor();
+		Loggerclass.info("Graph verified successfully");
+		driver.navigate().back();
+		driver.navigate().back();
+	}
+	
+	@Test(priority=3, description="Graph Representations")
+	 public void ClickGraphRep() throws Exception {
+		gr.GRREPClick();
+		String actPara = gr.getparagraphText();
+		String expPara = "Graph Representations";
+		if (actPara.equals(expPara)) {
+			Assert.assertEquals (actPara,expPara);
+			Loggerclass.info("You are on Graph Representations page");
+			Assert.assertTrue(true);
+		}
+		else {
+			Loggerclass.info("You are not on Graph Representations page");
+			Assert.assertTrue(false);
+		}
+		gr.GREDClick();
+		gr.TEditor();
+		Loggerclass.info("Graph Representations verified successfully");
+		driver.navigate().back();
+		driver.navigate().back();
+	}
+
+}
