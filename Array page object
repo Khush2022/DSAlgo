@@ -1,0 +1,81 @@
+package PageObjectTestNG;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
+public class Array {
+	WebDriver ldriver;
+	public Actions action;
+	
+	public Array(WebDriver rdriver)
+	 {
+	   ldriver = rdriver;
+	   PageFactory.initElements(rdriver, this);
+	   action = new Actions(this.ldriver);
+	 }
+	
+	@FindBy (xpath ="//a[@href='array']")  WebElement arClick ;
+	@FindBy (xpath = "//h4") WebElement heading;
+	@FindBy (xpath= "/html/body/div[2]/div/div[2]/strong/p") WebElement paragaphtext;
+	@FindBy (xpath ="//a[@href='/tryEditor']")  WebElement aredClick ;
+	@FindBy(xpath="//pre[@role='presentation']/span") public WebElement Editor;
+	@FindBy (xpath ="//a[@href='arrays-in-python']")  WebElement apClick ;
+	@FindBy (xpath ="//a[@href='arrays-using-list']")  WebElement alClick ;
+	@FindBy (xpath ="//a[@href='basic-operations-in-lists']")  WebElement abolClick ;
+	@FindBy (xpath ="//a[@href='applications-of-array']")  WebElement apaClick ;
+	@FindBy (xpath ="//a[@href='/array/practice']")  WebElement pracClick ;
+	@FindBy (xpath ="//a[@href='/question/1']")  WebElement q1Click ;
+	@FindBy (xpath ="//a[@href='/question/2']")  WebElement q2Click ;
+	@FindBy (xpath ="//a[@href='/question/3']")  WebElement q3Click ;
+	@FindBy (xpath ="//a[@href='/question/4']")  WebElement q4Click ;
+	
+	public void ClickAR() {
+		arClick.click();
+	}
+	public String getheading() {
+		String head = heading.getText();
+		return head;
+	}
+	public String getparagraphText() {
+		String para=paragaphtext.getText();
+		return para;
+	}
+	public void AREDClick() {
+		aredClick.click();
+	} 
+	public void TEditor() {
+	    action.moveToElement(Editor).click().sendKeys("print('Hello World')").build().perform();
+	}
+	public void APClick()
+	{
+		apClick.click();
+	}
+	public void ALClick () {
+		alClick.click();
+	}
+	public void ABOLClick () {
+		abolClick.click();
+	}
+	public void APAClick () {
+		apaClick.click();
+	}
+	public void PRACClick () {
+		pracClick.click();
+	}
+	public void Q1Click () {
+		q1Click.click();
+	}
+	public void Q2Click () {
+		q2Click.click();
+	}
+	public void Q3Click () {
+		q3Click.click();
+	}
+	public void Q4Click () {
+		q4Click.click();
+	}
+
+}
