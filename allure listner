@@ -1,0 +1,75 @@
+package UtilitiesTestNG;
+
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
+import org.testng.ITestContext;
+import org.testng.ITestListener;
+import org.testng.ITestResult;
+import BaseClassTestNG.BaseClassTestNG;
+
+import io.qameta.allure.Attachment;
+
+public class AllureListner implements ITestListener
+{
+	private static String getTestMethodName(ITestResult iTestResult)
+	 {
+	  return iTestResult.getMethod().getConstructorOrMethod().getName();
+	 }
+	
+	@Attachment 
+	public byte[] saveFailureScreenShot(WebDriver driver)
+	 {
+	  return((TakesScreenshot)driver).getScreenshotAs(OutputType.BYTES);
+	 }
+	 
+	@Attachment(value = "{0}", type = "text/plain")
+	 public static String saveTextLog(String message)
+	 {
+	  return message;
+	 }
+	 
+	public void onStart(ITestContext iTestContext)
+	 {
+	  System.out.println("Start method " + iTestContext.getName());
+	  iTestContext.setAttribute("WebDriver", BaseClassTestNG.driver);  
+	 }
+	
+	 public void onFinish(ITestContext iTestContext)
+	 {
+	  System.out.println("Finished method " + iTestContext.getName());
+	 }
+	 
+	 public void onTestStart(ITestResult iTestResult)
+	 {
+	  System.out.println("TestStart method " + getTestMethodName(iTestResult) + "start");
+	 }
+	 
+	 public void onTestSuccess(ITestResult iTestResult)
+	 {
+	  System.out.println("TestSuccess method" + getTestMethodName(iTestResult) + "succeed");
+	 }
+	 
+	 public void onTestFailure(ITestResult iTestResult)
+	 {
+	  System.out.println("TestFailure method" + getTestMethodName(iTestResult) + "failed");
+	  //Object testClass = iTestResult.getInstance();
+	  WebDriver driver1 = BaseClassTestNG.driver;
+	  
+	  if(driver1 instanceof WebDriver)
+	  {
+	   System.out.println("Screenshot captured for test case: " + getTestMethodName(iTestResult));
+	   saveFailureScreenShot(driver1);
+	  }
+	  saveTextLog(getTestMethodName(iTestResult) + "failed and screenshot taken");
+	  
+	 }
+	 
+	 public void onTestSkipped(ITestResult iTestResult)
+	 {
+	  System.out.println("TestSkipped method" + getTestMethodName(iTestResult) + "Skipped");
+	 }
+
+	
+	
+}
