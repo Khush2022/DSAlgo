@@ -1,0 +1,63 @@
+package BaseClassTestNG;
+
+import org.testng.annotations.BeforeClass;
+
+import PageObjectTestNG.GetStartedButton;
+
+import java.io.File;
+
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.AfterClass;
+import UtilitiesTestNG.Loggerclass;
+
+public class BaseClassTestNG {
+	
+	 public String baseurl = "https://dsportalapp.herokuapp.com/";
+	 //public String username = "khush2023";
+	 //public String password = "Hello@123";
+	 public static WebDriver driver;
+	 
+	 @BeforeClass
+	 public void setup() {
+		 System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir")+"//DriversSrc//chromedriver.exe");
+			driver = new ChromeDriver();
+			driver.get(baseurl);
+			GetStartedButton gt = new GetStartedButton(driver);
+			gt.ClickOnGetStarButton();		 
+	 }	 
+	 
+	 public void captureScreen(WebDriver driver,String tarname) throws Exception
+	  {
+	     try 
+	     {
+	      TakesScreenshot scrShot =((TakesScreenshot)driver);
+	      File SrcFile = scrShot.getScreenshotAs(OutputType.FILE);
+	      File TrgFile = new File(System.getProperty("user.dir") + "/Screenshots/" + tarname +".png");
+	      FileUtils.copyFile(SrcFile, TrgFile);
+	     }
+	     catch(Exception e)
+	     {
+	       Loggerclass.error("Exception Occured While Capturing ScreenShot ");
+	       System.out.println("Exception is : "+e.getMessage());
+	       throw new Exception();
+	     }
+	  
+	  }	
+	 
+			 
+	
+	@AfterClass
+		public void tearDown()
+		{
+		driver.quit();	
+		}
+
+
+
+	
+	}
+
