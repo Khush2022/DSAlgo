@@ -1,0 +1,19 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+
+<suite name="DSAlgoTestNG" verbose="1" >
+  <test name="DSAlgoTestNG" >
+    <classes>
+       <class name="TestCasesTestNG.TC_GetStartedButton"> </class>
+       <class name="TestCasesTestNG.TC_HomePage"> </class>
+       <class name="TestCasesTestNG.TC_LoginPage"> </class>
+       <class name="TestCasesTestNG.TC_RegisterPage"> </class>
+       <class name="TestCasesTestNG.TC_DataStructure"> </class>
+       <class name="TestCasesTestNG.TC_Array"> </class>
+       <class name="TestCasesTestNG.TC_LinkedList"> </class>
+       <class name="TestCasesTestNG.TC_Stack"> </class>
+       <class name="TestCasesTestNG.TC_Queue"> </class>
+       <class name="TestCasesTestNG.TC_Tree"> </class>
+       <class name="TestCasesTestNG.TC_Graph"> </class>
+    </classes>     
+  </test>
+</suite>
